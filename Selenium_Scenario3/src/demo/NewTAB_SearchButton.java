@@ -1,9 +1,7 @@
 package demo;
-
-
 import java.util.Set;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -28,7 +26,6 @@ public class NewTAB_SearchButton {
 
 	@Test
 	public void test() {
-
 		// Opening Medical Records in New Tab
 		String newTAB = Keys.chord(Keys.CONTROL, Keys.RETURN);
 		wd.findElement(By.linkText("Medical Records")).sendKeys(newTAB);
@@ -44,6 +41,14 @@ public class NewTAB_SearchButton {
 		WebElement element = wd.findElement(By.id("search_type"));
 		Select select = new Select(element);
 		select.selectByVisibleText("First Name");
+		
+		String title1 = wd.getTitle();
+		
+		wd.findElement(By.id("search_patient")).click();
+		
+		String title2 = wd.getTitle();
+		
+		Assert.assertTrue(title1!=title2);		
 		
 	}
 
